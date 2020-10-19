@@ -1,0 +1,15 @@
+{
+  "name": "leilao",
+  "version": "1.0.0",
+  "description": "Trabalho de programacao script",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mozart Breno",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}

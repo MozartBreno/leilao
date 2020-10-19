@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-title>
+        Novo Lance
+    </mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="nome" [(ngModel)]="lance.nome" name="nome">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="lance" [(ngModel)]="lance.valor" name="valor">
+        </mat-form-field>
+
+    </form>
+    <button mat-raised-button (click)="createLance()" color="primary">
+        Salvar
+    </button>
+    <button mat-raised-button (click)="cancel()">
+        Cancelar
+    </button>
+</mat-card>

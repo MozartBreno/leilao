@@ -20,8 +20,8 @@ export class LanceService {
     })
   }
 
-  create(cliente: Lance): Observable<Lance>{
-    return this.http.post<Lance>(this.baseUrl,cliente);
+  create(lance: Lance): Observable<Lance>{
+    return this.http.post<Lance>(this.baseUrl,lance);
   }
   read(): Observable<Lance[]>{
     return this.http.get<Lance[]>(this.baseUrl)

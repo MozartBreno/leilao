@@ -12,48 +12,41 @@ app.use(express.json());
 var lances = []
 
 exists = a => {
-    var counter = 0
-    lances.map( e => {
-        if( e.valor == a){
-            counter++
-            return
+    var contador = 0
+
+    lances.map( lance => {
+        if( lance.valor == a){
+            contador++
+            return true
         }
     })
 
-    return counter >= 2 ? true : false 
-
+    if(contador > 1){
+    	return true;
+    }
+    else{
+    	return false
+    }
 }
  
 app.get("/lance", function(req, res) {
 
-        //array que informa as posições repetidas
-        const i = []
-
-        //ordena o array em ordem crescente
+        const repetidas = []
         lances.sort((a,b) => parseFloat(a.valor) - parseFloat(b.valor) );
-
-        //percorre o vetor de lances
-        lances.map( (l, index) => {
-            //caso exista um elemento repetido, ele é inserido ao final da lista e é adicionado o indice do elemento corrente no array de posições repetidas
-            if(exists(l.valor)){
-                i.push(index)
-                lances.push(l)
+        lances.map( (lance, index) => {
+            if(exists(lance.valor)){
+                repetidas.push(index)
+                lances.push(lance)
             }
         })
-
-        //aqui eu retiro todos os elementos usando os indices adicionados no vetor de posições repetidas
-        for (let index = i.length ; index > 0; index--) {
-            lances.splice(i[index-1],1)
-        }
-        //depois de todos esses passo eu já tenho meu vetor devidamente ordenado, onde a primeira posição eu terei quem está vencendo no leilão
-        
+        for (let index = repetidas.length ; index > 0; index--) {
+            lances.splice(repetidas[index-1],1)
+        }        
         return res.json(lances)
-        
-
 });
 app.post("/lance", function(req, res){
-        const { nome, valor } = req.body;
-        const lance  = {nome : nome, valor : valor}
+
+        const lance  = {nome : req.body.nome, valor : req.body.valor}
         lances.push(lance)
         return res.json(lance);
     
